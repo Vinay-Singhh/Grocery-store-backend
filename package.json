@@ -1,0 +1,17 @@
+{
+  "name": "grocery_backend",
+  "version": "1.0.0",
+  "description": "Project for flixstock",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinay Singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.4",
+    "nodemon": "^2.0.19"
+  }
+}
