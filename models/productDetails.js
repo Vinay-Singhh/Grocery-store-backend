@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
     p_category: {
         type: String,
+        enum: ['Dairy', 'Vegetables', 'Poultry', 'Pharma'],
         required: true
     },
     p_info: {
@@ -22,4 +23,4 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = Product = mongoose.model("Product", productSchema);
+module.exports = Product = mongoose.model('Product', productSchema);

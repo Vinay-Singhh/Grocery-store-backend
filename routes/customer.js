@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const customerController = require('../controllers/users_controller');
+const customerController = require('../controllers/customers_controller');
 
 // Create
 router.post('/create', customerController.create);
 // Customers list
-router.get('/list', customerController.lists);
+router.get('/list', customerController.customerList);
 // get specific customer
-router.get('/orders', customerController.getAllorders);
+// router.get('/orderList', customerController.getAllorders);
 // get customer having max orders
-router.get('/max', customerController.maxOrder);
+// router.get('/max', customerController.maxOrder);
 
 // export router
 module.exports = router;

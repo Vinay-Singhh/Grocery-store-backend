@@ -1,9 +1,9 @@
-const User = require('../models/customers');
+const Customer = require('../models/customers');
 
 // Creating customer
-module.exports.create = function (req, res) {
+module.exports.create = async function (req, res) {
     try {
-        let user = await User.findOne({ email: req.body.email });
+        let user = await Customer.findOne({ email: req.body.email });
         //if not found than create customer
         if (!user) {
             Customer.create(req.body);
@@ -17,7 +17,7 @@ module.exports.create = function (req, res) {
         }
 
     } catch (error) {
-        console.log(err)
+        console.log(error)
         return res.status(500).json({
             message: "Internal Server Error"
         })
@@ -25,15 +25,17 @@ module.exports.create = function (req, res) {
 }
 
 // Show customer list
-module.exports.lists = async function (req, res) {
+module.exports.customerList = async function (req, res) {
     try {
         // find and populate all customers
-        let customers = await User.find({}).sort('-createdAt').populate({
-            path: 'orders',
-            populate: {
-                path: 'productList'
-            }
-        })
+        // let customers = await Customer.find({}).sort('-createdAt').populate({
+        //     path: 'orders',
+        //     populate: {
+        //         path: 'productList'
+        //     }
+        // })
+        let customers = await Customer.find();
+        console.log(customers);
         // if there is no customer in db
         if (customers.length == 0) {
             return res.status(400).json({
@@ -58,7 +60,7 @@ module.exports.getAllorders = async function (req, res) {
         // checking if data is entered correctly
         if (req.body.email || req.body.phone) {
             // find customer with either phone or email
-            let customer = await User.findOne({
+            let customer = await Customer.findOne({
                 $or: [{
                     email: req.body.email
                 }, {
@@ -101,7 +103,7 @@ module.exports.getAllorders = async function (req, res) {
 module.exports.maxOrder = async function (req, res) {
     try {
         // find customer and populate
-        let customers = await User.find({}).populate({
+        let customers = await Customer.find({}).populate({
             path: 'orders',
             populate: {
                 path: 'productList'

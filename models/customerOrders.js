@@ -14,6 +14,7 @@ const orderSchema = new mongoose.Schema({
     },
     paymentInfo: {
         type: String,
+        enum: ["Upi", "Cash", "Internet-Banking"],
         required: true,
     },
     // user: {

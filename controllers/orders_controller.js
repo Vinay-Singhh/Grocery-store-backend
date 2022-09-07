@@ -1,42 +1,6 @@
 const Customer = require('../models/customers');
 const Order = require('../models/customerOrders');
-const product = require('../models/productDetails');
-
-// module.exports.create = async (req, res) => {
-//     try {
-//         const id = req.params.custID;
-//         console.log(id);
-//         let customer = await Customer.findById(req.params.custID);
-//         console.log(req.body.totalPrice);
-//         if (customer) {
-//             Order.create({
-//                 owner: req.body.owner,
-//                 // orderItems: [{
-//                     productID: req.body.productID,
-//                     name: req.body.name,
-//                     quantity: req.body.quantity,
-//                     price: req.body.price,
-//                 // }],
-//                 totalPrice: req.body.totalPrice,
-//                 paymentInfo: req.body.paymentInfo
-//             });
-//             console.log("inside if", customer);
-//         } else {
-//             return res.status(404).json({
-//                 data: {
-//                     message: "User not found"
-//                 }
-//             })
-//         };        // let customers = await Customer.find()
-//         return res.status(200).json({
-//             data: {
-//                 message: "Order created"
-//             }
-//         })
-//     } catch (err) {
-//         return res.send('Error in creating orders ' + err);
-//     }
-// }
+const Product = require('../models/productDetails');
 
 module.exports.createOrder = async (req, res) => {
     try {
