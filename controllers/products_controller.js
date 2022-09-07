@@ -1,31 +1,30 @@
-const Product = require('../models/p_details');
+const Product = require('../models/productDetails');
 
-module.exports.create = async function (req, res) {
-    Product.findOne({ p_name: req.body.p_name }, function (err, product) {
-        if (err) {
-            return res.status(500).json({
-                message: "Internal Server Error!!"
-            });
-        }
+module.exports.createProduct = async function (req, res) {
+    try {
+        let product = Product.findOne({ p_name: req.body.p_name });
+        //if not found than create new product
         if (!product) {
-            //if not found than create new product
             Product.create(req.body);
             return res.status(200).json({
-                message: "product created successfully"
+                message: "Product created successfully"
             });
         } else {
             return res.status(200).json({
-                message: "same product already exist"
+                message: "Same product already exist"
             });
         }
-    });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal server error"
+        })
+    }
 }
 
 // Update price of the product
 module.exports.updatePrice = async function (req, res) {
-    console.log("Inside updatePrice", req.params.id);
+    // console.log("Inside updatePrice", req.params.id);
     try {
-        const id = req.params.id;
         const number = req.body.update_price
         console.log("Number", number);
         const result = await Product.findByIdAndUpdate(id, number);
@@ -45,17 +44,17 @@ module.exports.updatePrice = async function (req, res) {
 
 }
 
-module.exports.getAllorders = async function (req, res) {
-    console.log("Inside get all orders", req.params.id);
-    try {
-        let customer = await Customer.findById(req.params.id).populate();
-        return res.status(200).json({
-            data: {
-                message: `Order list for ${customer.name}`,
-                orders: customer.orders
-            }
-        })
-    } catch (err) {
-        return res.send('Error in fetching order list: ' + err);
-    }
-}
+// module.exports.getAllorders = async function (req, res) {
+//     console.log("Inside get all orders", req.params.id);
+//     try {
+//         let customer = await Customer.findById(req.params.id).populate();
+//         return res.status(200).json({
+//             data: {
+//                 message: `Order list for ${customer.name}`,
+//                 orders: customer.orders
+//             }
+//         })
+//     } catch (err) {
+//         return res.send('Error in fetching order list: ' + err);
+//     }
+// }
