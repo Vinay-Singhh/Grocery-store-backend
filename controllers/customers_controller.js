@@ -58,21 +58,23 @@ module.exports.customerList = async function (req, res) {
 module.exports.getAllorders = async function (req, res) {
     try {
         // checking if data is entered correctly
-        if (req.body.email || req.body.phone) {
+        let email = req.params.emailID;
+        if (req.params.emailID) {
             // find customer with either phone or email
-            let customer = await Customer.findOne({
-                $or: [{
-                    email: req.body.email
-                }, {
-                    phone: req.body.phone
-                }]
+            let customer = await Customer.findOne({email: req.params.emailID
+                // $or: [{
+                //     email: req.body.email
+                // }, {
+                //     phone: req.body.phone
+                // }]
             }).populate({
                 path: 'orders',
                 populate: {
                     path: 'productList'
                 }
             });
-
+            console.log("req.params.emailID", req.params.emailID);
+            console.log("customer", customer);
             // return list of orders
             return res.status(200).json({
                 message: `Order list for ${customer.name}(${customer.phone})`,
@@ -82,15 +84,6 @@ module.exports.getAllorders = async function (req, res) {
             return res.status(400).json({
                 message: "Please enter correct data"
             })
-            // let order = await Order.find({ "owner": req.params.custID });
-            // console.log("customer", order)
-            // return res.status(200).json({
-            //     data: {
-            //         // message: `Order list for ${customer.name}`,
-            //         message: "found successfully",
-            //         orders: order
-            //     }
-            // })
         }
     } catch (err) {
         return res.status(500).json({

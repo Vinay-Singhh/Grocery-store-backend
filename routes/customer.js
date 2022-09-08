@@ -8,7 +8,7 @@ router.post('/create', customerController.create);
 // Customers list
 router.get('/list', customerController.customerList);
 // get specific customer
-// router.get('/orderList', customerController.getAllorders);
+router.get('/orderList/:emailID', customerController.getAllorders);
 // get customer having max orders
 // router.get('/max', customerController.maxOrder);
 
