@@ -7,6 +7,7 @@ module.exports.createOrder = async (req, res) => {
         // check for correct input
         if (req.body.email || req.body.phone) {
             if (req.body.item || req.body.paymentInfo) {
+                console.log("req.body.item", req.body.item);
                 // find customer if exists
                 let customer = await Customer.findOne({
                     $or: [{
@@ -24,18 +25,17 @@ module.exports.createOrder = async (req, res) => {
                     });
                     //  if there is only one item to order
                     let itemArr = Array.isArray(req.body.item) ? req.body.item : [req.body.item];
-                    console.log(itemArr)
-                    // iterate over item array
+                    console.log("itemArr", itemArr)
                     for (let i = 0; i < itemArr.length; i++) {
                         // find product
                         let product = await Product.findOne({
-                            info: itemArr[i]
+                            p_info: itemArr[i]
                         });
                         console.log(product);
                         // if product exist
                         if (product) {
                             // add price in total
-                            totalPrice += product.price
+                            totalPrice += product.p_price
                             console.log(totalPrice);
                             // push product to productlist on each iteration
                             newOrder.productList.push(product);

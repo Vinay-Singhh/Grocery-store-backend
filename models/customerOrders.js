@@ -9,8 +9,7 @@ const orderSchema = new mongoose.Schema({
         ref: 'Product',
     }],
     totalPrice: {
-        type: Number,
-        required: true,
+        type: Number
     },
     paymentInfo: {
         type: String,

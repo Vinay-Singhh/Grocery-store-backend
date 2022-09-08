@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
     p_category: {
         type: String,
-        enum: ['Dairy', 'Vegetables', 'Poultry', 'Pharma'],
+        enum: ['Dairy', 'Vegetables', 'Poultry', 'Fruits'],
         required: true
     },
     p_info: {
         type: String,
+        unique: true,
         required: true
     },
     p_price: {

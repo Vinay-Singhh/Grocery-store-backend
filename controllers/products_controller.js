@@ -13,11 +13,13 @@ module.exports.createProduct = async function (req, res) {
             info: req.body.p_info
         });
         //if exist
-        if (product) {
+        if (product && product.p_info == req.body.p_info) {
+            // console.log(product.p_info, req.body.p_info);
             return res.status(400).send({
                 message: 'Product already exists, Enter new one'
             });
         }
+        // if(product.p_info)
         // if not exist create product
         let newProduct = await Product.create(req.body);
         return res.status(200).send({
