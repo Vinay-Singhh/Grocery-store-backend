@@ -24,25 +24,32 @@ Create .env with following variables
 ## Screenshots
 
 1. Creating customer in database
+
 ![:create](https://user-images.githubusercontent.com/99065594/189067866-5e17803a-463c-4ff8-a76f-feca8e55a3f1.png)
 
 2. Fetching customer lists from database
+
 ![:list](https://user-images.githubusercontent.com/99065594/189068408-62ecc012-ee87-4a08-975f-9749e23534aa.png)
 
 3. Fetching orders list for specific customers from database
+
 ![:orderList](https://user-images.githubusercontent.com/99065594/189068616-8d66dd08-a020-4a61-8c43-a655c00fe666.png)
 
 4. Creating product in database
+
 ![:createProduct](https://user-images.githubusercontent.com/99065594/189068793-92ffea6b-5afe-4202-9c46-0e2b9c69bff5.png)
 
 5. Updating price of specific product in database
+
 ![:updatePrice](https://user-images.githubusercontent.com/99065594/189068992-ac62366a-84e1-4c62-89d5-232cef967fb6.png)
 
 6. Fetching maximum orders in an year from database
+
 ![:max](https://user-images.githubusercontent.com/99065594/189069218-6f459ff7-46d2-4495-8718-e423b35bd188.png)
 
 
 7. Creating new Order in database
-8. ![:newOrder](https://user-images.githubusercontent.com/99065594/189069304-2733c069-2eca-4877-98c5-cd6614d82f18.png)
+
+![:newOrder](https://user-images.githubusercontent.com/99065594/189069304-2733c069-2eca-4877-98c5-cd6614d82f18.png)
 
 
