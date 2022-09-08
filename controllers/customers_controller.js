@@ -57,34 +57,25 @@ module.exports.customerList = async function (req, res) {
 // fetch specific customer 
 module.exports.getAllorders = async function (req, res) {
     try {
-        // checking if data is entered correctly
-        let email = req.params.emailID;
-        if (req.params.emailID) {
-            // find customer with either phone or email
-            let customer = await Customer.findOne({email: req.params.emailID
-                // $or: [{
-                //     email: req.body.email
-                // }, {
-                //     phone: req.body.phone
-                // }]
-            }).populate({
-                path: 'orders',
-                populate: {
-                    path: 'productList'
-                }
-            });
-            console.log("req.params.emailID", req.params.emailID);
-            console.log("customer", customer);
-            // return list of orders
-            return res.status(200).json({
-                message: `Order list for ${customer.name}(${customer.phone})`,
-                OrderList: customer.orders
-            })
-        } else {
+        // find customer with either email
+        let customer = await Customer.findOne({ email: req.params.emailID }).populate({
+            path: 'orders',
+            populate: {
+                path: 'productList'
+            }
+        });
+        if (!customer) {
             return res.status(400).json({
                 message: "Please enter correct data"
             })
         }
+        console.log("req.params.emailID", req.params.emailID);
+        console.log("customer", customer);
+        // return list of orders
+        return res.status(200).json({
+            message: `Order list for ${customer.name}(${customer.phone})`,
+            OrderList: customer.orders
+        })
     } catch (err) {
         return res.status(500).json({
             message: "Internal Server Error"

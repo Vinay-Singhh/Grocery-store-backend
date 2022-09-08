@@ -10,7 +10,7 @@ router.get('/list', customerController.customerList);
 // get specific customer
 router.get('/orderList/:emailID', customerController.getAllorders);
 // get customer having max orders
-// router.get('/max', customerController.maxOrder);
+router.get('/max', customerController.maxOrder);
 
 // export router
 module.exports = router;
