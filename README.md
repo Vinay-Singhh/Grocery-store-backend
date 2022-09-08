@@ -20,3 +20,8 @@ Create .env with following variables
 * Api to create new Product: [POST] `localhost:3011/product/createProduct`
 * API to update Product Price: [POST] `localhost:3011/product/:id/updatePrice` with productID in place of :id and pass p_price to any value > 0
 * Api to create a new order: [POST] `localhost:3011/order/newOrder` with [phone or email, item1, item2... , paymentInfo'] in postman to create new order for customer
+
+## Screenshots
+
+- Creating customer in database
+![:create](https://user-images.githubusercontent.com/99065594/189067866-5e17803a-463c-4ff8-a76f-feca8e55a3f1.png)
